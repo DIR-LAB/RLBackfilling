@@ -15,14 +15,14 @@ sudo apt-get install openmpi-bin openmpi-doc libopenmpi-dev
 conda install mpi4py
 ```
 
-### Clone Deep Batch Scheduler
+### Clone RLBackfilling
 ```bash
-git clone https://github.com/thembow/backfil-rlscheduler-pytorch.git
+git clone https://github.com/DIR-LAB/RLBackfilling.git
 ```
 
 ### Install Dependencies
 ```shell script
-cd backfil-rlscheduler-pytorch
+cd RLBackfilling
 pip install -r requirements.txt
 ```
 
@@ -35,7 +35,6 @@ bfTorch.py: Used to train and run RLBackfilling models, as well as tests for act
 compare-make-table.py: Generates raw avgbsld scores
 compare.py: Generates box and whisker plot comparisons
 ```
-
 To change the hyper-parameters, such as `MAX_OBSV_SIZE` or the trajectory length during training, you can change them in bfTorch.py.
 
 ### Training
