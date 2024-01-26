@@ -88,7 +88,7 @@ def run_policy(env, get_action, nums, iters, score_type):
 
         sjf_r.append(sum(env.schedule_curr_sequence_reset(env.sjf_score).values()))
         # small_r.append(sum(env.schedule_curr_sequence_reset(env.smallest_score).values()))
-        fcfs_r.append(sum(env.schedule_sequence_con(env.fcfs_score).values()))
+        fcfs_r.append(sum(env.schedule_curr_sequence_reset(env.fcfs_score).values()))
 
         o = env.build_observation()
         rl = 0

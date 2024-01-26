@@ -887,7 +887,7 @@ class HPCEnv(gym.Env):
                                                                         job_for_scheduling.request_number_of_processors)
             self.running_jobs.append(job_for_scheduling)
             score = self.job_score(job_for_scheduling)  # calculated reward
-            scheduled_logs[job_for_scheduling.job_id] = score
+            self.scheduled_rl[job_for_scheduling.job_id] = score
             self.job_queue.remove(job_for_scheduling)
 
             not_empty = self.moveforward_for_job()
@@ -1561,8 +1561,8 @@ class HPCEnv(gym.Env):
             current = current.next
         #sets jobs status to running in proc map
         #print("debug! in start_job_conservative scheduling, job started succesfully!")
-        if job.run_time != job.request_time:
-            print(f"debug! discrepancy found! job run time={job.run_time} vs request={job.request_time}")
+        # if job.run_time != job.request_time:
+        #     print(f"debug! discrepancy found! job run time={job.run_time} vs request={job.request_time}")
         return scheduled_logs
 
     def get_next_start(self):
