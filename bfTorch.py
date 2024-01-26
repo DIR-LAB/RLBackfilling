@@ -691,9 +691,9 @@ class HPCEnv(gym.Env):
         job_sequence_size = num
         assert self.batch_job_slice == 0 or self.batch_job_slice>=job_sequence_size
         if self.batch_job_slice == 0:
-            self.start = self.np_random.integers(job_sequence_size, (self.loads.size() - job_sequence_size - 1))
+            self.start = self.np_random.randint(job_sequence_size, (self.loads.size() - job_sequence_size - 1))
         else:
-            self.start = self.np_random.integers(job_sequence_size, (self.batch_job_slice - job_sequence_size - 1))
+            self.start = self.np_random.randint(job_sequence_size, (self.batch_job_slice - job_sequence_size - 1))
         #self.start = start
         self.start_idx_last_reset = self.start
         self.num_job_in_batch = job_sequence_size
