@@ -31,16 +31,15 @@ pip install -r requirements.txt
 ```
 data/: Contains a series of workload and real-world traces.
 plot.py: Plot the trained results.
-bfTorch.py: Used to train and run RLBackfilling models, as well as tests for actual/noisy runtime performance
-compare-make-table.py: Generates raw avgbsld scores
-compare.py: Generates box and whisker plot comparisons
+rlbackfill.py: Used to train and run RLBackfilling models, as well as tests for actual/noisy runtime performance
+rlbackfill-test.py: Generates raw avgbsld scores and box+whisker plot.
 ```
-To change the hyper-parameters, such as `MAX_OBSV_SIZE` or the trajectory length during training, you can change them in bfTorch.py.
+To change the hyper-parameters, such as `MAX_OBSV_SIZE` or the trajectory length during training, you can change them in rlbackfill.py.
 
 ### Training
 To train a RL model based on a job trace, run this command:
 ```bash
-python bfTorch.py --workload "./data/lublin_256.swf" --exp_name your-exp-name --trajs 500 --heuristic fcfs --backfill 1
+python rlbackfill.py --workload ./data/lublin_256.swf --exp_name your-exp-name --trajs 400 --epochs 300 --heuristic fcfs
 ```
 
 There are many other parameters in the source file.
@@ -62,7 +61,7 @@ It will plot the training curve.
 After the RLBackfiller converges, you can test the result and compare it with different policies such as FCFS, SJF, WFP3, UNICEP, and F1.
 
 ```bash
-python compare-make-table.py --rlmodel "./logs/your-exp-name/your-exp-name_s0/" --workload "./data/lublin_256.swf" --len 2048 --iter 10
+python rlbackfill-test.py --rlmodel "./logs/your-exp-name/your-exp-name_s0/" --workload "./data/lublin_256.swf" --len 2048 --iter 10
 ```
 There are many parameters you can use:
 * `--seed`, the seed for random sampling
@@ -70,7 +69,7 @@ There are many parameters you can use:
 
 ### Runtime Testing
 
-To test the how differences in runtime accuracy can affect results, modify the `self.request_time` in the `Job class` located in bfTorch.py
+To test the how differences in runtime accuracy can affect results, modify the `self.request_time` in the `Job class` located in rlbackfill.py
 For example, to test how 100% accurate request time affects scheduling, perform this change in the code
 ```python
 self.request_time = self.run_time
