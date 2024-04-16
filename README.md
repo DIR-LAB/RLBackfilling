@@ -2,6 +2,8 @@
 
 > [!IMPORTANT]
 > We noticed that the way we calculated the bsld is not accurate after the paper was published. Hence, we corrected it in this update (bad9bc3) and also fixed the corresponding tables/plots in the paper on [Arxiv](https://arxiv.org/abs/2404.09264)
+
+
 This repo includes the bfTorch source code and necessary datasets to run the experiments/tests. 
 
 The code has been tested on Ubuntu 18.04 with PyTorch 1.13 and Gym 0.21. 
